@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Contacts</title>
+    <script src="https://kit.fontawesome.com/b5624e6916.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="box" id="heading">
+        <h1><i class="far fa-calendar-alt"></i> <%= date %></h1>
+    </div>
+
+    <div class="box">
+        
+        <% for(let i = 0; i < myContacts.length; i++) { %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="text" name="oldName" hidden value="<%= myContacts[i].name %>">
+                    <input type="text" name="oldNumber" hidden value="<%= myContacts[i].number %>">
+                    <p><%= myContacts[i].name %></p>
+                    <p><%= myContacts[i].number %></p>
+                    <button type="submit" name="deleteNumber"><i class="fas fa-trash"></i></button>
+                </div>
+            </form>
+        <% } %>
+
+        <form action="/" class="class" id="newContactForm" method="post">
+            <input type="text" name="newName" id="newName" placeholder="Add Contact Name" onkeyup="validate()"><br>
+            <input type="text" name="newNumber" id="newNumber" placeholder="Add Phone Number" onkeyup="validate()"><br>
+            <button type="submit" id="contactSubmit" disabled>+</button><br>
+            <p id="errorMessage"><%= error %></p>
+        </form>
+    </div>
+    
+    <footer>
+        <span>Roald Välja &#169; 2021</span>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
